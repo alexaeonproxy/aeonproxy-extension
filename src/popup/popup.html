@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=380">
+  <title>AeonProxy</title>
+  <link rel="stylesheet" href="popup.css">
+  <script src="theme.js"></script>
+</head>
+<body>
+  <div class="app" id="app">
+    <header class="hd" id="hd">
+      <div class="hd-top">
+        <a class="brand" id="brand" href="#" title="Open aeonproxy.com">
+          <svg class="mark" width="24" height="24" viewBox="0 0 64 64" fill="none" aria-hidden="true"><mask id="mk" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64"><rect width="64" height="64" fill="#fff"/><circle cx="32" cy="32" r="8.5" fill="#000"/></mask><path class="mark-loop" d="M32 32C40 20 58 20 58 32C58 44 40 44 32 32C24 20 6 20 6 32C6 44 24 44 32 32Z" stroke="#fff" stroke-width="7.5" stroke-linejoin="round" mask="url(#mk)"/><path class="mark-run" d="M32 32C40 20 58 20 58 32C58 44 40 44 32 32C24 20 6 20 6 32C6 44 24 44 32 32Z" stroke="#9FE6D6" stroke-width="7.5" stroke-linejoin="round" mask="url(#mk)" pathLength="100"/><circle class="mark-node" cx="32" cy="32" r="5.5" fill="#9FE6D6"/></svg>
+          <span>AeonProxy</span>
+        </a>
+        <div class="hd-act">
+          <button type="button" class="ib" id="btnSettings" title="Settings" aria-label="Settings"></button>
+        </div>
+      </div>
+      <div class="st" id="status"></div>
+      <div class="exit" id="exit"></div>
+    </header>
+
+    <nav class="tabs" id="tabs" data-tab="aeon" role="tablist">
+      <button type="button" class="tab" role="tab" data-tab="aeon">AeonProxy</button>
+      <button type="button" class="tab" role="tab" data-tab="mine">My proxies</button>
+      <span class="tab-ind" aria-hidden="true"></span>
+    </nav>
+
+    <main class="main" id="main"></main>
+
+    <section class="sheet" id="sheet" aria-hidden="true" aria-label="Settings"></section>
+    <div class="dd-layer" id="ddLayer" hidden></div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </div>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

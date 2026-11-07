@@ -1,0 +1,11 @@
+{
+  "name": "aeonproxy-extension",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node test/parse.mjs"
+  },
+  "engines": { "node": ">=22" }
+}
