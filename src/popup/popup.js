@@ -549,16 +549,19 @@ async function pick(anchor, kind) {
       const items = [{ v: '', label: any }, ...rows.map((r) => ({ v: r.name, label: title(r.name) }))];
       const v = await picker(anchor, { items, value: cur[kind], placeholder: `Search ${rows.length} ${kind === 'region' ? 'regions' : p.targetName === 'ISP' ? 'ISPs' : 'carriers'}` });
       if (v === undefined) return;
-      await saveCfg((cc) => { cc[prod][kind] = v; });
+      /* the City list belongs to the region (below), so another region clears the city, as in the dashboard's generator */
+      await saveCfg((cc) => { cc[prod][kind] = v; if (kind === 'region' && v !== cur.region) cc[prod].city = ''; });
     } else if (kind === 'time') {
       const v = await picker(anchor, { items: TIMES.map(([t, l]) => ({ v: String(t), label: `Keep for ${l}` })), value: String(cur.time), placeholder: 'Session time', plain: true });
       if (v === undefined) return;
       await saveCfg((cc) => { cc[prod].time = Number(v); });
     } else if (kind === 'city') {
       if (!cur.country) return;
-      const q = `product=${p.api}&country=${cur.country}`;
+      /* with a region picked, only that region's cities: a city of another region next to it finds no exit there, and
+         the gateway goes out from the region instead (the API's region parameter, as the dashboard's City list) */
+      const q = `product=${p.api}&country=${cur.country}${cur.region ? `&region=${encodeURIComponent(cur.region)}` : ''}`;
       const v = await picker(anchor, {
-        value: cur.city, placeholder: 'Type a city',
+        value: cur.city, placeholder: cur.region ? `Type a city in ${title(cur.region)}` : 'Type a city',
         remote: async (s) => { const r = await authed(`/api/v1/locations/cities?${q}&limit=100${s ? `&search=${encodeURIComponent(s)}` : ''}`); return [{ v: '', label: 'Any city' }, ...r.results.map((x) => ({ v: x.name, label: title(x.name) }))]; },
       });
       if (v === undefined) return;

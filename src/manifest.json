@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "AeonProxy — Proxy Manager",
   "short_name": "AeonProxy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Connect your browser to AeonProxy residential, mobile, ISP and datacenter proxies in two clicks, or to any proxy of your own.",
   "homepage_url": "https://aeonproxy.com",
   "minimum_chrome_version": "116",
